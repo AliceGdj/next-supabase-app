@@ -1,9 +1,11 @@
 import Link from "next/link";
-import Home from "./pages/Home";
-import Create from "./pages/Create";
-import Update from "./pages/Update";
+import supabase from '../config/supabaseClient';
+
 
 export default function HomePage() {
+  console.log("===== supabase =====");
+  console.log(supabase);
+
   return (
     <main>
       <nav>
