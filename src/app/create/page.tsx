@@ -1,5 +1,5 @@
 const Create = () => {
-  console.log("uuuuu")
+  console.log("create page")
   return (
     <div className="page create">
       <h2>Create</h2>
