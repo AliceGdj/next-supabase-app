@@ -1,4 +1,4 @@
-import supabase from "@/config/supabaseClient";
+import supabase from "../config/supabaseClient";
 import Link from "next/link";
 import SmoothieCard from "../components/SmoothieCard";
 import { Smoothie } from "../types";

@@ -1,8 +1,11 @@
+import { AddForm } from "./add-form";
+
 const Create = () => {
-  console.log("create page")
+  console.log("create page");
+
   return (
     <div className="page create">
-      <h2>Create</h2>
+      <AddForm />
     </div>
   )
 };
