@@ -1,11 +1,13 @@
+import Navbar from "../../components/Navbar";
 import { AddForm } from "./add-form";
 
 const Create = () => {
-  console.log("create page");
-
   return (
-    <div className="page create">
-      <AddForm />
+    <div>
+      <Navbar />
+      <div className="page create">
+        <AddForm />
+      </div>
     </div>
   )
 };

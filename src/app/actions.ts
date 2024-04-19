@@ -11,7 +11,6 @@ export async function createSmoothie(
   },
   formData: FormData,
 ) {
-    console.log(">> this is the top of the createSmoothie function ")
 
     const schema = z.object({
         title: z.string().min(1),
@@ -34,12 +33,52 @@ export async function createSmoothie(
     try {
         await supabase
             .from('smoothies')
-            .insert([ smoothieToBeAdded ])
+            .insert([ smoothieToBeAdded ]) // array automatically generates the id in the db
     
         revalidatePath("/"); // revalidatePath the homepage before redirection
     } catch (e) {
         return { message: "Failed to create smoothie" };
     }
-    redirect('/'); // redirect to the homepage
+    redirect('/');
 }
 
+export async function updateSmoothie(
+    id: string,
+    prevState: {
+        message: string;
+    },
+    formData: FormData,
+  ) {
+
+    const schema = z.object({
+        title: z.string().min(1),
+        method: z.string().min(1),
+        rating: z.string().min(1),
+    });
+
+    const parse = schema.safeParse({
+        title: formData.get("title"),
+        method: formData.get("method"),
+        rating: formData.get("rating"),
+    });
+
+    if (!parse.success) {
+        return { message: "Failed to create smoothie" };
+    }
+
+    const {  title, method, rating } = parse.data;
+
+    try {
+        await supabase
+            .from('smoothies')
+            .update({ title, method, rating })
+            .eq('id', id)
+            .select() // in order to get the data back in the console
+    
+        revalidatePath("/");
+    } catch (e) {
+        return { message: "Failed to update smoothie" };
+    }
+
+    redirect('/');
+}

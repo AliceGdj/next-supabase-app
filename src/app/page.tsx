@@ -1,13 +1,10 @@
 import supabase from "../config/supabaseClient";
-import Link from "next/link";
 import SmoothieCard from "../components/SmoothieCard";
 import { Smoothie } from "../types";
+import Navbar from "../components/Navbar";
 
-export default async function Home() {
-  console.log("==== homepage ====")
-  
+export default async function Home() {  
   const { data: smoothies } = await supabase.from('smoothies').select('id, title, method, rating');
-  console.log("smoothies", smoothies)
 
   if (!smoothies) {
     console.log("No smoothies found.")
@@ -15,11 +12,7 @@ export default async function Home() {
 
   return (
     <main>
-      <nav>
-        <h1>Supa Smoothies</h1>
-        <Link href="/">Home</Link>
-        <Link href="/create">Create New Smoothie</Link>
-      </nav>
+      <Navbar />
       <div className="page home">
         <h2>Homepage</h2>
         {!smoothies && (
@@ -27,7 +20,7 @@ export default async function Home() {
         )}
         {smoothies && (
           <div className="smoothie">
-            {/* order-by buttons */}
+            {/* TODO LATER order-by buttons */}
             <div className="smoothie-grid">
               {smoothies.map((smoothie: Smoothie) => (
                 <SmoothieCard key={smoothie.id} smoothie={smoothie} />
