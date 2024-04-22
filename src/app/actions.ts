@@ -40,7 +40,7 @@ export async function createSmoothie(
         return { message: "Failed to create smoothie" };
     }
     redirect('/');
-}
+};
 
 export async function updateSmoothie(
     id: string,
@@ -73,7 +73,7 @@ export async function updateSmoothie(
             .from('smoothies')
             .update({ title, method, rating })
             .eq('id', id)
-            .select() // in order to get the data back in the console
+            .select() // in order to get the data back in the console (only needed bc we use supabase v2)
     
         revalidatePath("/");
     } catch (e) {
@@ -81,4 +81,18 @@ export async function updateSmoothie(
     }
 
     redirect('/');
-}
+};
+
+export const handleDelete = async (id: string) => {
+    const { data, error } = await supabase
+        .from('smoothies')
+        .delete()
+        .eq('id', id);
+    if (error) {
+        console.log(error);
+    };
+    if (data) {
+        console.log(data);    
+    };
+    revalidatePath("/");
+};

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Smoothie } from "../types";
-import Image from 'next/image'
+import Image from 'next/image';
+import DeleteButton from "./DeleteButton";
 
 
 const SmoothieCard = ({ smoothie }: { smoothie: Smoothie }) => {
@@ -13,6 +14,7 @@ const SmoothieCard = ({ smoothie }: { smoothie: Smoothie }) => {
                 <Link href={"/" + smoothie.id}>
                     <Image src="/edit.svg" height={25} width={25} alt="edit"/>
                 </Link>
+                <DeleteButton id={smoothie.id} />
             </div>
         </div>
     );
