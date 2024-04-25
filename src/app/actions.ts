@@ -96,3 +96,16 @@ export const handleDelete = async (id: string) => {
     };
     revalidatePath("/");
 };
+
+export const handleOrderBy = async (str: string) => {
+    const { data, error } = await supabase
+        .from('smoothies')
+        .select('id, title, method, rating')
+        .order(str, { ascending: false })
+
+    if (error) {
+        console.log("Failed to filter the smoothies ", error);
+    };
+
+    return data;
+};

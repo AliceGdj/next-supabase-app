@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+// import { Suspense } from 'react'
+// import { NavigationEvents } from "../components/NavigationEvents";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,7 +15,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+
+        {/* NOTE: below is for the case that we want to use params to filter */}
+
+        {/* <Suspense fallback={null}>
+          <NavigationEvents />
+        </Suspense> */}
+      </body>
     </html>
   );
 }
