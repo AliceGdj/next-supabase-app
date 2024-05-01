@@ -21,7 +21,7 @@ function SubmitButton() {
 
 export function UpdateForm( {smoothie}: {smoothie: Smoothie} ) {
     const updateSmoothieWithId = updateSmoothie.bind(null, smoothie.id);
-    const [state, formAction] = useFormState(updateSmoothieWithId, initialState);
+    const [formState, formAction] = useFormState(updateSmoothieWithId, initialState);
 
     const [title, setTitle] = useState(smoothie.title);
     const [method, setMethod] = useState(smoothie.method);
@@ -58,9 +58,8 @@ export function UpdateForm( {smoothie}: {smoothie: Smoothie} ) {
             />
             <SubmitButton />
             <p aria-live="polite" className="sr-only" role="status">
-            {state?.message}
+            {formState?.message}
             </p>
-            {/* {formError && <p className="error">{formError}</p>} */}
         </form>
     );
 }

@@ -76,11 +76,10 @@ export async function updateSmoothie(
             .select() // in order to get the data back in the console (only needed bc we use supabase v2)
     
         revalidatePath("/");
+        redirect('/');
     } catch (e) {
         return { message: "Failed to update smoothie" };
     }
-
-    redirect('/');
 };
 
 export const handleDelete = async (id: string) => {
